@@ -33,9 +33,7 @@ public class UserController {
     public ResponseEntity<?> save(@RequestBody UserModel user) {
         try {
             Session session = sessionFactory.openSession();
-            session.save(user);
-            session.flush();
-            session.close();
+            session.save(user);            
             return ResponseEntity.ok("Data saved successfully");
         } catch (Exception e) {
             e.printStackTrace();

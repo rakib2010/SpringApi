@@ -42,8 +42,7 @@ public class ProductController {
             
             Session session = sessionFactory.openSession();
             session.save(entity);
-            session.flush();
-            session.close();
+           
             return ResponseEntity.ok("Data saved successfully");
         } catch (Exception e) {
             e.printStackTrace();

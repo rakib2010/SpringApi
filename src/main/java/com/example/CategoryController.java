@@ -17,20 +17,20 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @CrossOrigin(origins = "*", maxAge = 3600)
-
+@Transactional
 public class CategoryController {
 
     @Autowired
     SessionFactory sessionFactory;
 
     @PostMapping(value = "/saveCategory", consumes = {MediaType.APPLICATION_JSON_VALUE})
-    @Transactional
+//    @Transactional
     public ResponseEntity<?> saveCategory(@RequestBody CategoryModel category) {
         try {
             Session session = sessionFactory.openSession();
             session.save(category);
-            session.flush();
-            session.close();
+//            session.flush();
+//            session.close();
             return ResponseEntity.ok("Data saved successfully");
         } catch (Exception e) {
             e.printStackTrace();
@@ -43,8 +43,7 @@ public class CategoryController {
         try {
             Session session = sessionFactory.openSession();
             List<CategoryModel> categoryList = session.createQuery("From CategoryModel").list();
-            session.flush();
-            session.close();
+           
             return ResponseEntity.ok(categoryList);
         } catch (Exception e) {
             e.printStackTrace();
@@ -58,8 +57,7 @@ public class CategoryController {
         try {
             Session session = sessionFactory.openSession();
             session.saveOrUpdate(entity);
-            session.flush();
-            session.close();
+           
             return ResponseEntity.ok("Data updated successfully");
         } catch (Exception e) {
             e.printStackTrace();
@@ -74,8 +72,7 @@ public class CategoryController {
             Session session = sessionFactory.openSession();
             CategoryModel entity = session.get(CategoryModel.class, id);
             session.delete(entity);
-            session.flush();
-            session.close();
+           
             return ResponseEntity.ok("Delete successful");
         } catch (Exception e) {
             e.printStackTrace();

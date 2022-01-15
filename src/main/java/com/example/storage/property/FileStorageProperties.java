@@ -1,12 +1,10 @@
 package com.example.storage.property;
 
-import javax.servlet.annotation.MultipartConfig;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.stereotype.Component;
 
 @Configuration
 public class FileStorageProperties {
-    private String uploadDir = "C:\\Users\\Student\\Desktop\\Rakib\\resource";
+    private String uploadDir = "";
 
     public String getUploadDir() {
         return uploadDir;
